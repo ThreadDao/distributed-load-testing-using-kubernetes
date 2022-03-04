@@ -14,9 +14,9 @@ Define environment variables for the project id, region and zone you want to use
 
     $ PROJECT=$(gcloud config get-value project)
     $ REGION=us-central1
-    $ ZONE=${REGION}-b
-    $ CLUSTER=gke-load-test
-    $ TARGET=${PROJECT}.appspot.com
+    $ ZONE=${REGION}-a
+    $ CLUSTER=cluster-1
+    $ TARGET=latency-10m-2p-xxxx.svc.us-west1-gcp.pinecone.io/query
     $ gcloud config set compute/region $REGION 
     $ gcloud config set compute/zone $ZONE
 
@@ -97,8 +97,8 @@ After the Locust workers are deployed, you can return to the Locust master web i
 
 5. Replace [TARGET_HOST] and [PROJECT_ID] in locust-master-controller.yaml and locust-worker-controller.yaml with the deployed endpoint and project-id respectively. 
 
-        $ sed -i -e "s/\[TARGET_HOST\]/$TARGET/g" kubernetes-config/locust-master-controller.yaml
-        $ sed -i -e "s/\[TARGET_HOST\]/$TARGET/g" kubernetes-config/locust-worker-controller.yaml
+        $ sed -i -e "s! \[TARGET_HOST\]! $TARGET! g" kubernetes-config/locust-worker-controller.yaml (deprecated)
+        $ sed -i -e "s! \[TARGET_HOST\]! $TARGET! g" kubernetes-config/locust-master-controller.yaml (deprecated)
         $ sed -i -e "s/\[PROJECT_ID\]/$PROJECT/g" kubernetes-config/locust-master-controller.yaml
         $ sed -i -e "s/\[PROJECT_ID\]/$PROJECT/g" kubernetes-config/locust-worker-controller.yaml
 
