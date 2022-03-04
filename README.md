@@ -130,4 +130,6 @@ Scaling up the number of simulated users will require an increase in the number 
 
 This code is Apache 2.0 licensed and more information can be found in `LICENSE`. For information on licenses for third party software and libraries, refer to the `docker-image/licenses` directory.
 
+## Reference
+https://cloud.google.com/architecture/distributed-load-testing-using-gke
 
