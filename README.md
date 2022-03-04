@@ -90,6 +90,8 @@ After the Locust workers are deployed, you can return to the Locust master web i
 
         $ pushd gke-load-test
         $ gcloud builds submit --tag gcr.io/$PROJECT/locust-tasks:latest docker-image/.
+        $ gcloud container images list | grep locust-tasks
+        https://console.cloud.google.com/gcr/images/zilliz-qa/global/locust-tasks
 
 4. Deploy sample application on GAE
 
