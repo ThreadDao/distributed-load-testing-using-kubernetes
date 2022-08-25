@@ -24,6 +24,6 @@ class PineconeUser(HttpUser):
         }
         headers = {
             "Content-Type": "application/json",
-            "Api-Key": "d3cce957-2401-4c94-832a-6db8eee658e5"
+            "Api-Key": "8d826b0a-d2fc-4402-85ba-2b9a07081ffd"
         }
         self.client.post(url=url, headers=headers, json=data)

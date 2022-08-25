@@ -31,7 +31,8 @@ spec:
     spec:
       containers:
         - name: locust-master
-          image: gcr.io/zong/locust-tasks:latest
+#          image: gcr.io/zong/locust-tasks:latest
+          image: us-west1-docker.pkg.dev/zong-360409/zong-repo/locust-tasks:latest
           env:
             - name: LOCUST_MODE
               value: master
