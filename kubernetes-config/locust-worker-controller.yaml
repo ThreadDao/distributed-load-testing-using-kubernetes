@@ -19,7 +19,7 @@ metadata:
   labels:
     name: locust-worker
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: locust-worker
@@ -31,11 +31,13 @@ spec:
       containers:
         - name: locust-worker
 #          image: gcr.io/zong/locust-tasks:latest
-          image: us-west1-docker.pkg.dev/zong-360409/zong-repo/locust-tasks:latest
+#          image: us-west1-docker.pkg.dev/zong-360409/zong-repo/locust-tasks:latest
+          image: ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REPO}/${LOCUST_IMAGE_NAME}:${LOCUST_IMAGE_TAG}
           env:
             - name: LOCUST_MODE
               value: worker
             - name: LOCUST_MASTER
               value: locust-master
             - name: TARGET_HOST
-              value: https://sift-128-euclidean-61a3a8a.svc.us-west1-gcp.pinecone.io/query
+#              value: https://sift-128-euclidean-61a3a8a.svc.us-west1-gcp.pinecone.io/query
+              value: https://${SAMPLE_APP_TARGET}
