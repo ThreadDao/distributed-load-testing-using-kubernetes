@@ -10,11 +10,12 @@ class PineconeUser(HttpUser):
         # url = "https://latency-10m-2p-0d908f2.svc.us-west1-gcp.pinecone.io/query"
         url = "https://sift-128-euclidean-61a3a8a.svc.us-west1-gcp.pinecone.io/query"
         dim = 128
-        nq = 1
-        query_vec = []
-        for _ in range(nq):
-            values = [random.random() for _ in range(dim)]
-            query_vec.append({"values": values})
+        # nq = 1
+        # query_vec = []
+        # for _ in range(nq):
+        #     values = [random.random() for _ in range(dim)]
+        #     query_vec.append({"values": values})
+        query_vec = [random.random() for _ in range(dim)]
         data = {
             "namespace": "",
             "topK": 1,
