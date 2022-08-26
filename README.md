@@ -95,7 +95,7 @@ export GKE_VERSION=1.20
 export GKE_NODE_TYPE=e2-standard-4
 export GKE_SCOPE="https://www.googleapis.com/auth/cloud-platform"
 export PROJECT=$(gcloud config get-value project)
-export SAMPLE_APP_TARGET=sift-128-euclidean-61a3a8a.svc.us-west1-gcp.pinecone.io/query
+export SAMPLE_APP_TARGET=random-1m-768-0d908f2.svc.us-west1-gcp.pinecone.io/query
 ```
 **Note:** 若 `gcloud config get-value project` 为空则先通过命令 `gcloud config set project $PROJECT_ID` 设置默认 project
 
@@ -173,9 +173,9 @@ gcloud artifacts docker images list ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REP
    并创建 Locust master Pod 和 worker Pod Deployment：
 **Note:** 替换方式多样，可自行选择
 ```
-envsubst < kubernetes-config/locust-master-controller.yaml.tpl | kubectl apply -f -
-envsubst < kubernetes-config/locust-worker-controller.yaml.tpl | kubectl apply -f -
-envsubst < kubernetes-config/locust-master-service.yaml.tpl | kubectl apply -f -
+envsubst < kubernetes-config/locust-master-controller.yaml | kubectl apply -f -
+envsubst < kubernetes-config/locust-worker-controller.yaml | kubectl apply -f -
+envsubst < kubernetes-config/locust-master-service.yaml | kubectl apply -f -
 ```
 
 2. 验证 Locust Deployment 和 Service:
