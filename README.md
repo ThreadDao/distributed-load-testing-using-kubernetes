@@ -109,7 +109,7 @@ gcloud config set compute/region $REGION
 
 1. 创建 GKE 集群
 
-**Note:** 如果通过其他方式创建 GKE cluster (如 Console) 则忽略该步
+**Note:** 如果通过其他方式创建 GKE cluster (如 Console) 则忽略该步骤
 
    ```
   gcloud container clusters create ${GKE_CLUSTER} \
