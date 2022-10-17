@@ -33,6 +33,11 @@ spec:
 #          image: gcr.io/zong/locust-tasks:latest
 #          image: us-west1-docker.pkg.dev/zong-360409/zong-repo/locust-tasks:latest
           image: ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REPO}/${LOCUST_IMAGE_NAME}:${LOCUST_IMAGE_TAG}
+          resources:
+            limits:
+              cpu: "4"
+            requests:
+              cpu: "2"
           env:
             - name: LOCUST_MODE
               value: worker

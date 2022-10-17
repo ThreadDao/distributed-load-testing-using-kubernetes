@@ -53,6 +53,18 @@ Locust worker 部署完成后，可以返回 Locust master web 界面，看到 `
 
 1. 打开 Cloud Shell
 通过 Cloud Shell 运行该教程中的所有终端命令。
+   
+```
+export GKE_CLUSTER=cluster-2
+export AR_REPO=perf-repo
+export REGION=us-west1
+export ZONE=us-west1-b
+export SAMPLE_APP_LOCATION=us-west1-b
+export PROJECT=zong-365503
+export LOCUST_IMAGE_NAME=locust-tasks
+export LOCUST_IMAGE_TAG=sift-128d-30m-0
+export SAMPLE_APP_TARGET=sift-128d-30m-a0595a0.svc.us-west1-gcp.pinecone.io/query
+```
 
 2. 设置需要自定义的环境变量：
 
