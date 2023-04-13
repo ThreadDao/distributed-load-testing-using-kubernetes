@@ -2,7 +2,7 @@ import random
 import os
 from locust import HttpUser, task
 
-url = os.environ["url"]
+url = os.environ["TARGET_HOST"]
 dim = os.environ["dim"]
 api_key = os.environ["api_key"]
 
@@ -11,7 +11,7 @@ class PineconeUser(HttpUser):
 
     @task
     def query_task(self):
-        query_vec = [random.random() for _ in range(dim)]
+        query_vec = [random.random() for _ in range(int(dim))]
         data = {
             "namespace": "",
             "topK": 1,
