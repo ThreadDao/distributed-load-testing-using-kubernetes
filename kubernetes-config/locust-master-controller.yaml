@@ -40,6 +40,10 @@ spec:
             - name: TARGET_HOST
 #              value: https://sift-128-euclidean-61a3a8a.svc.us-west1-gcp.pinecone.io/query
               value: https://${SAMPLE_APP_TARGET}
+            - name: dim
+              value: ${dim}
+            - name: api_key
+              value: ${api_key}
           ports:
             - name: loc-master-web
               containerPort: 8089
