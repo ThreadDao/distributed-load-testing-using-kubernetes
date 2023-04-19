@@ -231,3 +231,14 @@ This code is Apache 2.0 licensed and more information can be found in `LICENSE`.
 ## Reference
 https://cloud.google.com/architecture/distributed-load-testing-using-gke
 
+## build image
+```
+cd docker-image/
+docker build -t dis-locust-tasks:v0.0.7 .
+docker tag dis-locust-tasks:v0.0.6 threaddao/dis-locust-tasks:v0.0.7
+docker push threaddao/dis-locust-tasks:v0.0.7
+```
+
+## current image
+tag `v0.0.7` randomly generates vectors to query
+tag `v0.0.8` loads standard datasets to query
