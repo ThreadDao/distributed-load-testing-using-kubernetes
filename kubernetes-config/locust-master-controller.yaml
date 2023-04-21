@@ -32,19 +32,19 @@ spec:
       containers:
         - name: locust-master
 #          image: gcr.io/zong/locust-tasks:latest
-          image: threaddao/dis-locust-tasks:v0.0.8
+          image: threaddao/dis-locust-tasks:v0.1.1
 #          image: ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REPO}/${LOCUST_IMAGE_NAME}:${LOCUST_IMAGE_TAG}
           env:
             - name: LOCUST_MODE
               value: master
             - name: TARGET_HOST
-              value: https://p2-gist-768-p2-x1-a0595a0.svc.us-west1-gcp.pinecone.io/query
+              value: https://p2-lion-768-a0595a0.svc.us-west1-gcp.pinecone.io/query
             - name: top_k
-              value: "10"
+              value: "1000"
             - name: fname
-              value: gist-768-euclidean-topk1000.hdf5
+              value: /data/query.npy
             - name: api_key
-              value: xxxxxxxxx
+              value: xxx
           volumeMounts:
             - mountPath: /data
               name: test-pvc
