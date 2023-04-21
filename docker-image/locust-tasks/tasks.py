@@ -1,9 +1,8 @@
 import random
 import os
 import h5py
+import numpy as np
 from locust import HttpUser, task
-
-data_dir = '/data'
 
 url = os.environ["TARGET_HOST"]
 api_key = os.environ["api_key"]
@@ -13,8 +12,12 @@ file_name = os.environ["fname"]
 
 class ChunkData(object):
     def __init__(self, fname):
-        f = h5py.File(fname, 'r')
-        self.data = f['test']
+        if fname.endswith('hdf5'):
+            self.data = h5py.File(fname, 'r')['test']
+        elif fname.endswith('npy'):
+            self.data = np.load(fname)
+        else:
+            raise Exception(f"Currently only support hdf5 and npy file type")
         self.total = self.data.shape[0]
 
     def __iter__(self):
@@ -33,7 +36,7 @@ class PineconeUser(HttpUser):
 
     @task
     def query_task(self):
-        chunk_data = ChunkData(f'{data_dir}/{file_name}')
+        chunk_data = ChunkData(file_name)
         query_vec = chunk_data.__next__()
         data = {
             "namespace": "",
