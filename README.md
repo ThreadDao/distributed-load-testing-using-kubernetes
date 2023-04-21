@@ -240,6 +240,6 @@ docker push threaddao/dis-locust-tasks:v0.0.7
 ```
 
 ## current image
-tag `v0.0.7` randomly generates vectors to query
-tag `v0.0.8` loads standard hdf5 datasets to query
-tag `v0.1.1' loads standard npy datasets to query
+1. tag `v0.0.7` randomly generates vectors to query
+2. tag `v0.0.8` loads standard hdf5 datasets to query
+3. tag `v0.1.1' loads standard npy datasets to query
