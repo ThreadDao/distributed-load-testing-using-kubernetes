@@ -1,5 +1,6 @@
 numpy
 h5py
 pandas
+pyarrow
 pinecone-client
 locust

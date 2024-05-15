@@ -32,21 +32,36 @@ spec:
       containers:
         - name: locust-master
 #          image: gcr.io/zong/locust-tasks:latest
-          image: threaddao/dis-locust-tasks:v0.1.1
+          image: threaddao/dis-locust-tasks:v1.2
 #          image: ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REPO}/${LOCUST_IMAGE_NAME}:${LOCUST_IMAGE_TAG}
           env:
             - name: LOCUST_MODE
               value: master
             - name: TARGET_HOST
-              value: https://p2-lion-768-a0595a0.svc.us-west1-gcp.pinecone.io/query
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: TARGET_HOST
             - name: top_k
-              value: "1000"
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: top_k
             - name: fname
-              value: /data/query.npy
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: fname
             - name: api_key
-              value: xxx
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: api_key
+          envFrom:
+            - configMapRef:
+                name: locust-config
           volumeMounts:
-            - mountPath: /data
+            - mountPath: /tmp
               name: test-pvc
           ports:
             - name: loc-master-web

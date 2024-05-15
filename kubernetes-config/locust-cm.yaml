@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  TARGET_HOST: https://laion-5m-768d-cosine-1grkrba.svc.aped-4627-b74a.pinecone.io
+  api_key: 9xxxxx7c
+  fname: /tmp/query.npy
+#  fname: /tmp/query.parquet
+  top_k: "100"
+kind: ConfigMap
+metadata:
+  name: locust-config
+  namespace: default
