@@ -32,22 +32,24 @@ spec:
       containers:
         - name: locust-master
 #          image: gcr.io/zong/locust-tasks:latest
-          image: threaddao/dis-locust-tasks:v0.1.1
+          image: threaddao/dis-locust-tasks:v1.2
 #          image: ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REPO}/${LOCUST_IMAGE_NAME}:${LOCUST_IMAGE_TAG}
           env:
             - name: LOCUST_MODE
               value: master
             - name: TARGET_HOST
-              value: https://p2-lion-768-a0595a0.svc.us-west1-gcp.pinecone.io/query
+              value: https://laion-1m-768d-1grkrba.svc.gcp-us-central1-4a9f.pinecone.io/query
             - name: top_k
-              value: "1000"
+              value: "100"
+            - name: f_label
+              value: ""
             - name: fname
-              value: /data/query.npy
+              value: /tmp/query.npy
             - name: api_key
               value: xxx
-          volumeMounts:
-            - mountPath: /data
-              name: test-pvc
+#          volumeMounts:
+#            - mountPath: /data
+#              name: test-pvc
           ports:
             - name: loc-master-web
               containerPort: 8089
@@ -58,7 +60,7 @@ spec:
             - name: loc-master-p2
               containerPort: 5558
               protocol: TCP
-      volumes:
-        - name: test-pvc
-          persistentVolumeClaim:
-            claimName: pvc-zong
+#      volumes:
+#        - name: test-pvc
+#          persistentVolumeClaim:
+#            claimName: pvc-zong

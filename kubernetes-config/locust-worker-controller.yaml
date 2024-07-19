@@ -19,7 +19,7 @@ metadata:
   labels:
     name: locust-worker
 spec:
-  replicas: 12
+  replicas: 3
   selector:
     matchLabels:
       app: locust-worker
@@ -31,7 +31,7 @@ spec:
       containers:
         - name: locust-worker
 #          image: gcr.io/zong/locust-tasks:latest
-          image: threaddao/dis-locust-tasks:v0.1.1
+          image: threaddao/dis-locust-tasks:v1.2
 #          image: ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REPO}/${LOCUST_IMAGE_NAME}:${LOCUST_IMAGE_TAG}
           resources:
             limits:
@@ -44,17 +44,19 @@ spec:
             - name: LOCUST_MASTER
               value: locust-master
             - name: TARGET_HOST
-              value: https://p2-lion-768-a0595a0.svc.us-west1-gcp.pinecone.io/query
+              value: https://laion-1m-768d-1grkrba.svc.gcp-us-central1-4a9f.pinecone.io/query
             - name: top_k
-              value: "1000"
+              value: "100"
+            - name: f_label
+              value: ""
             - name: fname
-              value: /data/query.npy
+              value: /tmp/query.npy
             - name: api_key
               value: xxx
-          volumeMounts:
-            - mountPath: /data
-              name: test-pvc
-      volumes:
-        - name: test-pvc
-          persistentVolumeClaim:
-            claimName: pvc-zong
+#          volumeMounts:
+#            - mountPath: /data
+#              name: test-pvc
+#      volumes:
+#        - name: test-pvc
+#          persistentVolumeClaim:
+#            claimName: pvc-zong
