@@ -2,6 +2,7 @@ import random
 import os
 import h5py
 import numpy as np
+import pandas as pd
 from locust import HttpUser, task
 
 url = os.environ["TARGET_HOST"]
@@ -17,6 +18,8 @@ class ChunkData(object):
             self.data = h5py.File(fname, 'r')['test']
         elif fname.endswith('npy'):
             self.data = np.load(fname)
+        elif fname.endswith('parquet'):
+            self.data = pd.read_parquet(fname)['emb']
         else:
             raise Exception(f"Currently only support hdf5 and npy file type")
         self.total = self.data.shape[0]

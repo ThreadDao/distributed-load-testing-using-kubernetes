@@ -14,7 +14,7 @@
 
 
 # Start with a base Python 3.7.2 image
-FROM python:3.9.12
+FROM python:3.8.0
 
 # Add the licenses for third party software and libraries
 ADD licenses /licenses
@@ -23,6 +23,7 @@ ADD licenses /licenses
 ADD locust-tasks /locust-tasks
 
 # Install the required dependencies via pip
+RUN pip install --upgrade pip
 RUN pip install -r /locust-tasks/requirements.txt
 
 # Expose the required Locust ports

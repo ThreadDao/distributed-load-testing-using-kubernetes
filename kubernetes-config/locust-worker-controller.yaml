@@ -44,19 +44,29 @@ spec:
             - name: LOCUST_MASTER
               value: locust-master
             - name: TARGET_HOST
-              value: https://laion-1m-768d-1grkrba.svc.gcp-us-central1-4a9f.pinecone.io/query
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: TARGET_HOST
             - name: top_k
-              value: "100"
-            - name: f_label
-              value: ""
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: top_k
             - name: fname
-              value: /tmp/query.npy
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: fname
             - name: api_key
-              value: xxx
-#          volumeMounts:
-#            - mountPath: /data
-#              name: test-pvc
-#      volumes:
-#        - name: test-pvc
-#          persistentVolumeClaim:
-#            claimName: pvc-zong
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: api_key
+          volumeMounts:
+            - mountPath: /tmp
+              name: test-pvc
+      volumes:
+        - name: test-pvc
+          persistentVolumeClaim:
+            claimName: pvc-zong
