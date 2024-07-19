@@ -8,6 +8,7 @@ url = os.environ["TARGET_HOST"]
 api_key = os.environ["api_key"]
 top_k = os.environ["top_k"]
 file_name = os.environ["fname"]
+filter_label = os.getenv("f_label", "")
 
 
 class ChunkData(object):
@@ -45,6 +46,8 @@ class PineconeUser(HttpUser):
             "includeMetadata": False,
             "vector": query_vec
         }
+        if filter_label != "":
+            data["filter"] = {"label": {"$eq": filter_label}}
         headers = {
             "Content-Type": "application/json",
             "Api-Key": api_key
