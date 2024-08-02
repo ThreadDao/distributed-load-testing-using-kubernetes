@@ -5,6 +5,7 @@ data:
   fname: /tmp/query.npy
 #  fname: /tmp/query.parquet
   top_k: "100"
+  f_label: "f8d5a851-0fc1-4f84-808c-450721a-1"
 kind: ConfigMap
 metadata:
   name: locust-config

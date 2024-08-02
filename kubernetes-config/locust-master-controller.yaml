@@ -32,7 +32,7 @@ spec:
       containers:
         - name: locust-master
 #          image: gcr.io/zong/locust-tasks:latest
-          image: threaddao/dis-locust-tasks:v1.2
+          image: threaddao/dis-locust-tasks:v2.0
 #          image: ${REGION}-docker.pkg.dev/${PROJECT}/${AR_REPO}/${LOCUST_IMAGE_NAME}:${LOCUST_IMAGE_TAG}
           env:
             - name: LOCUST_MODE
@@ -47,6 +47,11 @@ spec:
                 configMapKeyRef:
                   name: locust-config
                   key: top_k
+            - name: f_label
+              valueFrom:
+                configMapKeyRef:
+                  name: locust-config
+                  key: f_label
             - name: fname
               valueFrom:
                 configMapKeyRef:
@@ -76,4 +81,4 @@ spec:
       volumes:
         - name: test-pvc
           persistentVolumeClaim:
-            claimName: pvc-zong
+            claimName: my-pvc

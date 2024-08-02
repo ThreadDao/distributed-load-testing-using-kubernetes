@@ -56,3 +56,5 @@ class PineconeUser(HttpUser):
             "Api-Key": api_key
         }
         self.client.post(url=url, headers=headers, json=data)
+        # print(response.status_code)
+        # print(response.text)
